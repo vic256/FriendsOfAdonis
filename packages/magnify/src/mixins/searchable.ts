@@ -1,3 +1,5 @@
+/// <reference types="@poppinss/hooks" />
+
 import { RuntimeException } from '@adonisjs/core/exceptions'
 import { NormalizeConstructor } from '@adonisjs/core/types/helpers'
 import { BaseModel } from '@adonisjs/lucid/orm'
