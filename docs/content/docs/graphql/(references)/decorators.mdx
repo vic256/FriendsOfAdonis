@@ -1,0 +1,25 @@
+---
+title: Decorators
+---
+
+| Decorator                       | Type                          | Description                                                                                       |
+| ------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------- |
+| `@Arg(name: string)`            | `Parameter`                   | Argument of the operation                                                                         |
+| `@Args()`                       | `Parameter`                   | Arguments of the operation                                                                        |
+| `@ArgsType()`                   | `Class`                       |                                                                                                   |
+| `@Authorized()`                 | `Method` `Property` `Class`   | Secure the resource                                                                               |
+| `@Ctx()`                        | `Parameter`                   | Retrieve the [`HttpContext`](https://docs.adonisjs.com/guides/concepts/http-context#http-context) |
+| `@Directive(directive: string)` | `*`                           | Add a [Schema Directive](https://the-guild.dev/graphql/tools/docs/schema-directives)              |
+| `@Extension(metadata)`          | `Method` `Property` `Class`   | Provides metadata                                                                                 |
+| `@Field()`                      | `Method` `Property`           | Defines a Field                                                                                   |
+| `@FieldResolver()`              | `Method`                      | Defines a Field resolver                                                                          |
+| `@Info()`                       | `Parameter`                   | Provides Info                                                                                     |
+| `@InputType()`                  | `Class`                       | Defines an Input Type                                                                             |
+| `@InterfaceType()`              | `Class`                       | Defines an Interface Type                                                                         |
+| `@Mutation()`                   | `Method`                      | Defines a Mutation                                                                                |
+| `@ObjectType()`                 | `Class`                       | Defines an ObjectType                                                                             |
+| `@Query()`                      | `Method`                      | Defines a Query                                                                                   |
+| `@Resolver()`                   | `Class`                       | Defines a Resolver                                                                                |
+| `@Root()`                       | `Parameter`                   | Access the root document                                                                          |
+| `@Subscription()`               | `Method`                      | Not available                                                                                     |
+| `@UseMiddleware()`              | `Method`, `Property`, `Class` | Add a middleware to the resource                                                                  |

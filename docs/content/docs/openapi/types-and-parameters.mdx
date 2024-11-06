@@ -1,0 +1,132 @@
+---
+title: Types and paremeters
+---
+
+## Classes as schemas
+
+One of the most powerful feature of this library is the ability to use classes as schemas.
+When using the `@ApiProperty` decorator it will automatically add the property to the generated schema and try to infer the type from your Typescript type.
+
+```ts title="app/schemas/post.ts"
+export class Post {
+  @ApiProperty()
+  declare id: number;
+
+  @ApiProperty()
+  declare title: string;
+}
+```
+
+### Advanced properties options
+
+The `@ApiProperty` decorator also accepts the same properties as the original OpenAPI Schema object, allowing you to extend the generated schema.
+
+```ts title="app/schemas/post.ts"
+export class Post {
+  @ApiProperty({
+    example: 17,
+  })
+  declare id: number;
+
+  @ApiProperty({
+    min: 6,
+    max: 255,
+    examples: [
+      "How to create REST APIs with Adonis",
+      "Admin Dashboard for Adonis",
+    ],
+  })
+  declare title: string;
+}
+```
+
+### Optional properties
+
+Due to the lack of informations provided by the Typescript metadata it is not possible to infer if a property is optional. For this you can either use the `required` option or the `@ApiOptionalProperty` decorator.
+
+```ts title="app/schemas/post.ts"
+export class Post {
+  @ApiProperty()
+  declare id: number;
+
+  @ApiProperty()
+  declare title: string;
+
+  @ApiOptionalProperty() // [!code highlight]
+  declare content?: string;
+}
+```
+
+### Explicit type
+
+Sometimes the type of your property is too complex to be automatically inferred. When it is the case, you should see a warning in the console. To resolve this, you simply have to define explicitly the type using the `type` option.
+
+```ts title="app/schemas/post.ts"
+export class Post {
+  @ApiProperty({ type: CustomSchema }) // [!code highlight]
+  customData: any;
+}
+```
+
+### Circular dependencies
+
+You may have circular dependencies in your schema, for example a `Post` can have a `Post` as a parent. In this situation, you must explicitly define the type using a `Thunk`:
+
+```ts title="app/schemas/post.ts"
+export class Post {
+  @ApiProperty({ type: () => Post })
+  declare parent: Post;
+}
+```
+
+## Primitives
+
+Primitives can be defined by using their name as a string or its constructor.
+
+```ts
+@ApiResponse({ type: 'string' })
+@ApiProperty({ type: Number })
+@ApiBody({ type: Boolean })
+```
+
+## Arrays
+
+You can configure a type to be an array by simply wrapping your base type in an array.
+
+```ts
+@ApiBody({ type: [User] })
+@ApiProperty({ type: [Post] })
+```
+
+## Raw schema
+
+Sometimes you may want to define a raw OpenAPI schema. For this you can use the `schema` option.
+
+```ts
+@ApiProperty({
+  schema: {
+    type: 'object',
+    properties: {
+      user: {
+        $ref: getSchemaPath(User)
+      }
+    }
+  }
+})
+```
+
+## Enums
+
+An enum type can be defined by providing an array of the available items or a Typescript enum.
+
+```ts
+@ApiQuery({ name: "api", enum: ["openapi", "graphql"] })
+
+// or
+
+enum ApiEnum {
+  GRAPHQL = "graphql",
+  OPENAPI = "openapi"
+}
+@ApiQuery({ name: "api", enum: ApiEnum })
+```

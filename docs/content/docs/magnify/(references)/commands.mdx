@@ -1,0 +1,57 @@
+---
+title: Commands
+---
+
+## `magnify:import`
+
+The Magnify import command imports a given model into your Search Engine. It is useful when you just configured Magnify and have existing data to import.
+
+<table>
+  <tbody>
+    <tr>
+      <th>Usage</th>
+      <td>`node ace magnify:import <modelPath>`</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>Import the given model into the search index</td>
+    </tr>
+  </tbody>
+</table>
+
+## `magnify:flush`
+
+The Magnify flush command removes all the entries in your Search Engine for a specific model.
+
+<table>
+  <tbody>
+    <tr>
+      <th>Usage</th>
+      <td>`node ace magnify:flush <modelPath>`</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>Flush all of the model's records from the index</td>
+    </tr>
+  </tbody>
+</table>
+
+## `magnify:sync-index-settings`
+
+The Magnify sync-index-settings synchronize your Search Engine index settings with the current state of your models.
+
+<table>
+  <tbody>
+    <tr>
+      <th>Usage</th>
+      <td>`node ace magnify:sync-index-settings`</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>
+        Sync your configured index settings with your search engine
+        (Meilisearch)
+      </td>
+    </tr>
+  </tbody>
+</table>

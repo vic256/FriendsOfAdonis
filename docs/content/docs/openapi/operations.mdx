@@ -1,0 +1,75 @@
+---
+title: Operations
+---
+
+In OpenAPI terms, paths are endpoints (resources), such as `/users` or `/reports/summary`, that your API exposes, and operations are the HTTP methods used to manipulate these paths, such as `GET`, `POST` or `DELETE`.
+
+## Tags
+
+Tags allows you to categorize your endpoints, you can apply them to specific operations or on the controller.
+
+```ts
+@ApiTags("Demo")
+export default class UsersController {
+  @ApiTags("Other", "Public")
+  index() {}
+}
+```
+
+<Callout>
+  Tags will automatically be applied to your controllers using its name.
+</Callout>
+
+## Headers
+
+You can define custom headers that are expected as part of the request. You can apply it to specific operations or directly on the controller.
+
+```ts
+@ApiHeader({
+  name: "X-Language",
+  description: "The currently defined language",
+})
+export default class UsersController {
+  @ApiHeader({ name: "X-Store" })
+  index() {}
+}
+```
+
+## Responses
+
+You can define HTTP responses using the `@ApiResponse` decorator. You can stack them on a same operation for different status codes.
+It can also be used directly on the controller to be applied on all its operations.
+
+```ts
+@ApiResponse({ status: 403, description: "Forbidden" })
+export default class UsersController {
+  @ApiResponse({
+    status: 201,
+    description: "The record has been successfully created.",
+    type: User,
+  })
+  create() {}
+}
+```
+
+## Media Type (content-type)
+
+You can configure the Media type on your body and responses for specific operation. For example this allow you to enable file upload.
+
+```ts
+class FilesUploadDto {
+  @ApiProperty({
+    schema: { type: "array", items: { type: "string", format: "binary" } },
+  })
+  file: any;
+}
+
+@ApiResponse({ status: 403, description: "Forbidden" })
+export default class UsersController {
+  @ApiBody({
+    type: FilesUploadDto,
+    mediaType: "multipart/form-data",
+  })
+  uploadFile() {}
+}
+```

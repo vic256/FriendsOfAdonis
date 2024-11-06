@@ -1,0 +1,28 @@
+---
+title: Configuration
+---
+
+<TypeTable
+  type={{
+    playground: {
+      type: "boolean",
+      description:
+        "Enable the GraphQL Apollo Playground (defaults to true in development)",
+    },
+    autoSchemaFile: {
+      type: "boolean|string",
+      description: "Automatically generates the schema file",
+      default: "false",
+    },
+    buildSchemaOptions: {
+      type: "BuildSchemaOptions|undefined",
+      description: "Options provided to the TypeGraphQL buildSchema function",
+      default: "undefined",
+    },
+    apolloOptions: {
+      type: "ApolloServerOptions|undefined",
+      description: "Options provided to the ApolloServer",
+      default: "undefined",
+    },
+  }}
+/>

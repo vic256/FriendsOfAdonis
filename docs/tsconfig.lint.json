@@ -1,0 +1,12 @@
+{
+  "extends": ["./tsconfig.json"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "eslint.config.mjs",
+    "next.config.mjs",
+    "postcss.config.js",
+    "automd.config.js"
+  ],
+  "exclude": ["node_modules", ".source"]
+}

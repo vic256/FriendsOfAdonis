@@ -1,0 +1,59 @@
+---
+title: "Introduction"
+icon: Album
+---
+
+Generate OpenAPI compliant specifications powered by [`openapi-metadata`](#) for you Adonis Application.
+
+<Tabs items={["app/models/post.ts", "app/controllers/posts_controller.ts"]}>
+
+```ts tab="app/models/post.ts"
+import { ApiProperty, ApiOptionalProperty } from "@foadonis/openapi";
+
+export default class Post {
+  @ApiProperty()
+  id: number;
+
+  @ApiProperty()
+  title: string;
+
+  @ApiOptionalProperty()
+  content?: string;
+}
+```
+
+```ts tab="app/controllers/posts_controller.ts"
+import { ApiOperation, ApiResponse } from "@foadonis/openapi";
+import Post from "#models/post";
+
+export default class PostsController {
+  @ApiOperation({ summary: "List all posts" })
+  @ApiResponse({ type: [Post] })
+  index() {
+    return Post.query();
+  }
+
+  @ApiOperation({ summary: "Create a new Post" })
+  @ApiResponse({ type: Post })
+  create() {
+    return Post.create();
+  }
+}
+```
+
+</Tabs>
+
+<img
+  src="/openapi/showcase.svg"
+  alt="OpenAPI documentation with Scalar"
+  style={{ width: "100%", aspectRatio: 16 / 9 }}
+/>
+
+## Features
+
+✔ [OpenAPI V3](https://spec.openapis.org/oas/v3.0.0.html) specifications  
+✔ Fully typesafe  
+✔ Automatically infer types  
+✔ Automatically loads your controller from Adonis Router  
+✔ Supports [Scalar](https://scalar.com/), [Swagger UI](https://swagger.io/tools/swagger-ui/) and [Rapidoc](https://rapidocweb.com/)  
+✔ Supports schema generation from [Luxon](https://moment.github.io/luxon/) and [VineJS](https://vinejs.dev/docs/introduction)

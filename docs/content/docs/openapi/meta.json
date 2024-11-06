@@ -1,0 +1,21 @@
+{
+  "title": "OpenAPI",
+  "description": "Generate OpenAPI specifications",
+  "root": true,
+  "icon": "ScrollText",
+  "pages": [
+    "---Guide---",
+    "index",
+    "getting-started",
+    "------",
+    "types-and-parameters",
+    "operations",
+    "security",
+    "---References---",
+    "(references)/configuration",
+    "[Decorators](https://openapi-ts.dev/openapi-metadata/decorators)",
+    "---Advanced---",
+    "(advanced)/mapped-types",
+    "(advanced)/generic-types"
+  ]
+}

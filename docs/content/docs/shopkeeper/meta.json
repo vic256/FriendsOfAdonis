@@ -1,0 +1,6 @@
+{
+  "title": "Shopkeeper",
+  "description": "Fluent interface for Stripe",
+  "icon": "CircleDollarSign",
+  "root": true
+}

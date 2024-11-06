@@ -1,0 +1,20 @@
+{
+  "title": "GraphQL",
+  "description": "Create GraphQL APIs",
+  "root": true,
+  "icon": "Braces",
+  "pages": [
+    "---Guide---",
+    "index",
+    "getting-started",
+    "------",
+    "authorization",
+    "subscriptions",
+    "---References---",
+    "(references)/configuration",
+    "(references)/decorators",
+    "---Advanced---",
+    "(advanced)/custom-decorators",
+    "(advanced)/generic-types"
+  ]
+}

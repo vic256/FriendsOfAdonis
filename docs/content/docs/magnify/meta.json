@@ -1,0 +1,19 @@
+{
+  "title": "Magnify",
+  "description": "Plug and play full-text search",
+  "root": true,
+  "icon": "Search",
+  "pages": [
+    "---Guide---",
+    "index",
+    "getting_started",
+    "engines",
+    "---References---",
+    "(references)/commands",
+    "(references)/magnify",
+    "(references)/engine",
+    "(references)/searchable",
+    "---Advanced---",
+    "(advanced)/custom-search-engine"
+  ]
+}
