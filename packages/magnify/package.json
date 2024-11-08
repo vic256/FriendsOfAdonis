@@ -26,13 +26,11 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "quick:test": "node --import=./tsnode.esm.js --enable-source-maps bin/test.ts",
-    "pretest": "pnpm run lint",
     "test": "c8 pnpm run quick:test",
     "prebuild": "pnpm run clean",
     "build": "tsc",
     "dev": "tsc --watch",
-    "postbuild": "pnpm run copy:templates && pnpm run index:commands",
-    "automd": "automd"
+    "postbuild": "pnpm run copy:templates && pnpm run index:commands"
   },
   "keywords": [
     "adonis",
@@ -70,7 +68,6 @@
     "@types/node": "^20.14.5",
     "@types/sinon": "^17.0.3",
     "algoliasearch": "^5.6.1",
-    "automd": "^0.3.12",
     "better-sqlite3": "^11.3.0",
     "c8": "^10.1.2",
     "copyfiles": "^2.4.1",

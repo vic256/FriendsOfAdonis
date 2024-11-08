@@ -167,6 +167,24 @@ function nodeToTestObject(schema: OpenAPIV3.SchemaObject) {
   return res
 }
 
+export async function validatorToSchema(
+  validator: VineValidator<any, any>
+): Promise<OpenAPIV3.SchemaObject> {
+  const json = validator.toJSON()
+  const node = json.schema.schema
+
+  if (node.type !== 'object') {
+    // TODO: Better errors
+    throw new Error('Only object top-level schemas are currently supported')
+  }
+
+  const schema = parseCompilerNode(node, json.refs)
+
+  await enrichType(validator, schema)
+
+  return schema
+}
+
 export const VineTypeLoader: TypeLoaderFn = async (context, value, original) => {
   if (value instanceof VineValidator) {
     if (original === value) {
@@ -184,17 +202,7 @@ export const VineTypeLoader: TypeLoaderFn = async (context, value, original) => 
       return context.schemas[name]
     }
 
-    const validator = value.toJSON()
-    const node = validator.schema.schema
-
-    if (node.type !== 'object') {
-      // TODO: Better errors
-      throw new Error('Only object top-level schemas are currently supported')
-    }
-
-    const schema = parseCompilerNode(node, validator.refs)
-
-    await enrichType(value, schema)
+    const schema = await validatorToSchema(value)
 
     context.schemas[name] = schema
 

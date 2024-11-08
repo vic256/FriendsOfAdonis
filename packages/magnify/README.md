@@ -10,12 +10,17 @@
 
 <div align="center">
 
-<!-- automd:badges color="purple" license name="@foadonis/magnify" bundlephobia packagephobia -->
+<!-- automd:badges color="purple" license name="@foadonis/openapi" bundlephobia packagephobia -->
 
-[![npm version](https://img.shields.io/npm/v/@foadonis/magnify?color=purple)](https://npmjs.com/package/@foadonis/magnify)
-[![npm downloads](https://img.shields.io/npm/dm/@foadonis/magnify?color=purple)](https://npm.chart.dev/@foadonis/magnify)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@foadonis/magnify?color=purple)](https://bundlephobia.com/package/@foadonis/magnify)
-[![license](https://img.shields.io/github/license/FriendsOfAdonis/magnify?color=purple)](https://github.com/FriendsOfAdonis/magnify/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@foadonis/openapi?color=purple)](https://npmjs.com/package/@foadonis/openapi)
+[![npm downloads](https://img.shields.io/npm/dm/@foadonis/openapi?color=purple)](https://npm.chart.dev/@foadonis/openapi)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@foadonis/openapi?color=purple)](https://bundlephobia.com/package/@foadonis/openapi)
+
+<!-- /automd -->
+
+<!-- automd:coverage -->
+
+![Coverage](https://img.shields.io/badge/coverage-81%25-brightgreen)
 
 <!-- /automd -->
 

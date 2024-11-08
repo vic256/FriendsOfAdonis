@@ -12,10 +12,9 @@
 
 <!-- automd:badges color="purple" license name="@foadonis/graphql" bundlephobia packagephobia -->
 
-[![npm version](https://img.shields.io/npm/v/@foadonis/magnify?color=purple)](https://npmjs.com/package/@foadonis/magnify)
-[![npm downloads](https://img.shields.io/npm/dm/@foadonis/magnify?color=purple)](https://npm.chart.dev/@foadonis/magnify)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@foadonis/magnify?color=purple)](https://bundlephobia.com/package/@foadonis/magnify)
-[![license](https://img.shields.io/github/license/FriendsOfAdonis/magnify?color=purple)](https://github.com/FriendsOfAdonis/magnify/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@foadonis/graphql?color=purple)](https://npmjs.com/package/@foadonis/graphql)
+[![npm downloads](https://img.shields.io/npm/dm/@foadonis/graphql?color=purple)](https://npm.chart.dev/@foadonis/graphql)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@foadonis/graphql?color=purple)](https://bundlephobia.com/package/@foadonis/graphql)
 
 <!-- /automd -->
 

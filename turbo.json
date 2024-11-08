@@ -10,8 +10,8 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "automd": {
-      "cache": false
+    "test": {
+      "dependsOn": ["^test"]
     },
     "dev": {
       "cache": false,

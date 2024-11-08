@@ -5,6 +5,7 @@
     "**/*.tsx",
     "eslint.config.mjs",
     "next.config.mjs",
+    "next-sitemap.config.js",
     "postcss.config.js",
     "automd.config.js"
   ],
