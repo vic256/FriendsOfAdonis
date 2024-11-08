@@ -1,2 +1,1 @@
-import { configApp } from '@adonisjs/eslint-config'
-export default configApp()
+export { default } from '@foadonis/eslint-config/adonis.app.js'

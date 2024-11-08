@@ -1,5 +1,5 @@
 import { configPkg } from '@adonisjs/eslint-config'
 
 export default configPkg({
-  ignores: ['**/tmp/**']
+  ignores: ['tests/tmp/**', 'coverage/**', 'build/**']
 })

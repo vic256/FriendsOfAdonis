@@ -11,17 +11,29 @@
     "play:openapi": "turbo dev --filter=playground-openapi...",
     "automd": "automd"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@adonisjs/prettier-config": "^1.4.0",
     "@changesets/cli": "^2.27.9",
     "@foadonis/typescript-config": "workspace:*",
+    "@manypkg/cli": "^0.22.0",
     "automd": "^0.3.12",
+    "eslint": "^9.14.0",
     "mdbox": "^0.1.0",
     "prettier": "^3.3.3",
     "turbo": "^2.2.3",
-    "typescript": "5.5.4"
+    "typescript": "^5.6.3"
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
-  }
+  },
+  "pnpm": {
+    "overrides": {
+      "strtok3": "8.0.1"
+    }
+  },
+  "manypkg": {
+    "defaultBranch": "main"
+  },
+  "prettier": "@adonisjs/prettier-config"
 }

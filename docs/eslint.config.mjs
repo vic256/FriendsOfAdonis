@@ -1,4 +1,4 @@
-import next from "@foadonis/eslint-config/next.js";
+import next from "@foadonis/eslint-config/next.app.js";
 
 export default [
   {
