@@ -6,6 +6,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "test": "turbo test",
+    "typecheck": "turbo typecheck",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "play:graphql": "turbo dev --filter=playground-graphql...",
     "play:openapi": "turbo dev --filter=playground-openapi...",
