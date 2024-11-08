@@ -1,4 +1,4 @@
-name: release
+name: "🚀 Packages releases"
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
 
 jobs:
   changelog:
+    name: "🚀 Packages releases"
     runs-on: ubuntu-latest
-    if: ${{ github.repository_owner == 'openapi-ts' }}
     permissions:
       contents: write
       pull-requests: write
@@ -29,5 +29,5 @@ jobs:
           commit: "[ci] release"
           title: "[ci] release"
         env:
-          GITHUB_TOKEN: ${{ secrets.OPENAPI_TS_BOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
