@@ -12,6 +12,7 @@
     "automd": "automd"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.9",
     "@foadonis/typescript-config": "workspace:*",
     "automd": "^0.3.12",
     "mdbox": "^0.1.0",
