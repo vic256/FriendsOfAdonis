@@ -37,7 +37,9 @@
   "keywords": [
     "adonis",
     "adonisjs",
-    "secrets",
+    "openapi",
+    "oapi",
+    "api",
     "typescript"
   ],
   "author": {
@@ -46,12 +48,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FriendsOfAdonis/FriendsOfAdonis"
+    "url": "https://github.com/FriendsOfAdonis/FriendsOfAdonis",
+    "directory": "packages/openapi"
   },
   "bugs": {
     "url": "https://github.com/FriendsOfAdonis/FriendsOfAdonis/issues"
   },
-  "homepage": "https://friendsofadonis.github.io/docs/openapi",
+  "homepage": "https://friendsofadonis.com/docs/openapi",
   "license": "MIT",
   "devDependencies": {
     "@adonisjs/assembler": "^7.7.0",
