@@ -1,0 +1,104 @@
+{
+  "name": "@foadonis/shopkeeper",
+  "description": "An expressive and fluent interface to Stripe's subscription billing services.",
+  "version": "0.0.3",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "type": "module",
+  "files": [
+    "build",
+    "!build/bin",
+    "!build/tests"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./types": "./build/src/types.js",
+    "./shopkeeper_provider": "./build/providers/shopkeeper_provider.js",
+    "./services/*": "./build/services/*.js",
+    "./models/*": "./build/src/models/*.js",
+    "./commands": "./build/commands/main.js",
+    "./mixins": "./build/src/mixins/main.js"
+  },
+  "scripts": {
+    "clean": "del-cli build",
+    "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
+    "copy:resources": "copyfiles \"resources/**/*.edge\" build",
+    "index:commands": "adonis-kit index build/commands",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "quick:test": "node --import=./tsnode.esm.js --env-file .env --enable-source-maps bin/test.ts",
+    "test": "c8 pnpm run quick:test",
+    "prebuild": "pnpm run clean",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "postbuild": "pnpm run copy:templates && pnpm run index:commands"
+  },
+  "keywords": [
+    "adonis",
+    "adonisjs",
+    "stripe",
+    "typescript"
+  ],
+  "author": {
+    "name": "Martin Paucot",
+    "email": "contact@martin-paucot.fr"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/core": "^6.14.1",
+    "@adonisjs/lucid": "^21.2.0",
+    "@foadonis/eslint-config": "workspace:*",
+    "@japa/api-client": "^2.0.3",
+    "@japa/assert": "^3.0.0",
+    "@japa/expect": "^3.0.2",
+    "@japa/file-system": "^2.3.0",
+    "@japa/plugin-adonisjs": "^3.0.1",
+    "@japa/runner": "^3.1.4",
+    "@swc/core": "1.7.26",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^22.8.6",
+    "c8": "^10.1.2",
+    "copyfiles": "^2.4.1",
+    "del-cli": "^5.1.0",
+    "luxon": "^3.5.0",
+    "prettier": "^3.3.3",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^6.2.0",
+    "@adonisjs/lucid": "^21.2.0",
+    "luxon": "^3.5.0",
+    "reflect-metadata": "^0.2.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FriendsOfAdonis/FriendsOfAdonis.git",
+    "directory": "packages/shopkeeper"
+  },
+  "bugs": {
+    "url": "https://github.com/FriendsOfAdonis/FriendsOfAdonis/issues"
+  },
+  "homepage": "https://friendsofadonis.com/docs/shopkeeper",
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "dependencies": {
+    "stripe": "^16.12.0"
+  }
+}
