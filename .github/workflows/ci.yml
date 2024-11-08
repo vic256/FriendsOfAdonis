@@ -33,28 +33,6 @@ jobs:
           run_install: true
       - run: pnpm run lint
 
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇ Checkout repository
-        uses: actions/checkout@v4
-      - name: ⚡ Cache turbo build setup
-        uses: actions/cache@v4
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
-      - name: 🅝 Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: 📦 Install PNPM dependencies
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: true
-      - run: pnpm run typecheck
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -76,3 +54,4 @@ jobs:
         with:
           run_install: true
       - run: pnpm run build
+      - run: pnpm run typecheck
