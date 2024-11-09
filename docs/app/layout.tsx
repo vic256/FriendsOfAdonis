@@ -1,6 +1,7 @@
 import './global.css'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import Script from 'next/script'
 import type { ReactNode } from 'react'
 import { baseUrl, createMetadata } from '@/utils/metadata'
 import { Provider } from './provider'
@@ -24,6 +25,7 @@ export default function Layout({ children }: { readonly children: ReactNode }) {
       <body className="flex flex-col min-h-screen">
         <Provider>{children}</Provider>
       </body>
+      <Script data-domain="friendsofadonis.com" src="https://plausible.io/js/script.js" />
     </html>
   )
 }
