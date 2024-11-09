@@ -1,34 +1,35 @@
-import { defineGenerator } from "automd";
-import { readPackageJSON } from "pkg-types";
-import fs from "node:fs/promises";
-import { md as mdbox } from "mdbox";
+import { defineGenerator } from 'automd'
+import { readPackageJSON } from 'pkg-types'
+import fs from 'node:fs/promises'
+import { md as mdbox } from 'mdbox'
 
 export default defineGenerator({
-  name: "packages",
+  name: 'packages',
   async generate() {
-    const dirs = await fs.readdir("./packages");
+    const dirs = await fs.readdir('./packages')
 
-    const columns = ["Package", "Version", "Description", "", ""];
-    const rows: string[][] = [];
+    const columns = ['Package', 'Version', 'Description', '', '']
+    const rows: string[][] = []
 
     for (const dir of dirs) {
-      const packageJson = await readPackageJSON(
-        `./packages/${dir}/package.json`,
-      );
+      const packageJson = await readPackageJSON(`./packages/${dir}/package.json`)
 
       rows.push([
-        packageJson.name ?? "",
+        packageJson.name ?? '',
         mdbox.link(
-          `https://npmjs.com/${packageJson.name}`,
-          `\`${packageJson.version ?? ""}\``,
+          `https://npmjs.com/package/${packageJson.name}`,
+          mdbox.image(
+            `https://img.shields.io/npm/v/${packageJson.name}?color=brightgreen`,
+            'npm version'
+          )
         ),
-        packageJson.description ?? "",
+        packageJson.description ?? '',
         mdbox.link(
           `https://github.com/FriendsOfAdonis/FriendsOfAdonis/tree/main/packages/${dir}`,
-          "Source",
+          'Source'
         ),
-        mdbox.link(packageJson.homepage ?? "", "Documentation"),
-      ]);
+        mdbox.link(packageJson.homepage ?? '', 'Documentation'),
+      ])
     }
 
     return {
@@ -36,6 +37,6 @@ export default defineGenerator({
         columns,
         rows,
       }),
-    };
+    }
   },
-});
+})
