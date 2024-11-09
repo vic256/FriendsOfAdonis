@@ -18,10 +18,22 @@ export default async function Page(props: { readonly params: Promise<{ slug?: st
   const page = source.getPage(params.slug)
   if (!page) notFound()
 
+  const path = `docs/content/docs/${page.file.path}`
+
   const MDX = page.data.body
 
   return (
-    <DocsPage full={page.data.full} tableOfContent={{ style: 'clerk' }} toc={page.data.toc}>
+    <DocsPage
+      editOnGithub={{
+        repo: 'FriendsOfAdonis',
+        owner: 'FriendsOfAdonis',
+        sha: 'main',
+        path,
+      }}
+      full={page.data.full}
+      tableOfContent={{ style: 'clerk' }}
+      toc={page.data.toc}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
