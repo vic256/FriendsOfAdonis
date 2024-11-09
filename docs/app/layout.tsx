@@ -1,8 +1,18 @@
-import "./global.css";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
-import type { ReactNode } from "react";
-import { Provider } from "./provider";
+import './global.css'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+import type { ReactNode } from 'react'
+import { baseUrl, createMetadata } from '@/utils/metadata'
+import { Provider } from './provider'
+
+export const metadata = createMetadata({
+  title: {
+    template: '%s',
+    default: 'FriendsOfAdonis',
+  },
+  description: 'Well-crafted and battle-tested Adonis packages made with ♥ by the community',
+  metadataBase: baseUrl,
+})
 
 export default function Layout({ children }: { readonly children: ReactNode }) {
   return (
@@ -15,5 +25,5 @@ export default function Layout({ children }: { readonly children: ReactNode }) {
         <Provider>{children}</Provider>
       </body>
     </html>
-  );
+  )
 }
