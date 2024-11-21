@@ -1,3 +1,137 @@
 ---
-title: Generic types (soon)
+title: Generic types
 ---
+
+Generic types allows you to reduce code duplication. For example, if all your `index` endpoints return paginated responses it wouldn't be productive to write again and again the same class for each of your models.
+
+Hopefully we can leverage mixins to avoid this.
+
+```ts twoslash
+// @noErrors
+import { ApiProperty, ApiBody } from '@foadonis/openapi/decorators'
+
+function PaginatedResponse<TItem extends object>(Item: new (...args: any[]) => TItem) {
+  abstract class Pagination {
+    @ApiProperty()
+    declare total: number
+
+    @ApiProperty({ type: [Item] })
+    declare items: TItem[]
+  }
+}
+
+class RecipesPaginatedResponse extends PaginatedResponse(Recipe) {}
+
+class UsersController {
+  @ApiBody({ type: RecipesPaginatedResponse })
+  index() {
+    // ...
+  }
+}
+```
+
+## Examples
+
+### Lucid Paginated response
+
+In the following example we will create a mixin to create schemas for [Lucid pagination](https://lucid.adonisjs.com/docs/pagination).
+
+```ts title="app/controllers/users_controller.ts" twoslash
+// @noErrors
+import { HttpContext } from '@adonisjs/core/http'
+import { ApiQuery } from '@foadonis/openapi/decorators'
+import User from '#models/user'
+
+export class UsersController {
+  @ApiQuery({ name: 'page' })
+  @ApiQuery({ name: 'limit' })
+  index({ request }: HttpContext) {
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 25)
+    return User.query().paginate(page, limit)
+  }
+}
+```
+
+#### Meta schema
+
+First we will need to create the schema for the [`meta` property](https://lucid.adonisjs.com/docs/pagination#serializing-to-json) of our PaginatedResponse.
+
+```ts title="app/openapi/schemas/paginated_response.ts" twoslash
+import { ApiProperty } from '@foadonis/openapi/decorators'
+
+export class PaginatedResponseMeta {
+  @ApiProperty()
+  declare total: number
+
+  @ApiProperty()
+  declare perPage: number
+
+  @ApiProperty()
+  declare currentPage: number
+
+  @ApiProperty()
+  declare lastPage: number
+
+  @ApiProperty()
+  declare firstPage: number
+
+  @ApiProperty()
+  declare firstPageUrl: string
+
+  @ApiProperty()
+  declare lastPageUrl: string
+
+  @ApiProperty({ required: false })
+  declare nextPageUrl?: string
+
+  @ApiProperty({ required: false })
+  declare previousPageUrl?: string
+}
+```
+
+#### Mixin
+
+We can now create a mixin that will have the properties `data` and `meta`.
+
+```ts title="app/openapi/schemas/paginated_response.ts" twoslash
+// @noErrors
+import { ApiProperty } from '@foadonis/openapi/decorators'
+
+export default function PaginatedResponse<TItem extends object>(
+  Item: new (...args: any[]) => TItem
+) {
+  abstract class Pagination {
+    @ApiProperty()
+    declare meta: PaginatedResponseMeta
+
+    @ApiProperty({ type: [Item] })
+    declare items: TItem[]
+  }
+}
+```
+
+#### Usage
+
+You can now use the mixin in your controllers and simply pass the `User` model as a parameter.
+
+```ts title="app/controllers/users_controller.ts" twoslash
+// @noErrors
+import { HttpContext } from '@adonisjs/core/http'
+import { ApiQuery, ApiResponse } from '@foadonis/openapi/decorators'
+import User from '#models/user'
+import PaginatedResponse from '#openapi/schemas/paginated_response'
+
+class UsersPaginatedResponse extends PaginatedResponse(User) {} // [!code highlight]
+
+export class UsersController {
+  @ApiQuery({ name: 'page' })
+  @ApiQuery({ name: 'limit' })
+  @ApiResponse({ type: UsersPaginatedResponse }) // [!code highlight]
+  index({ request }: HttpContext) {
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 25)
+    return User.query().paginate(page, limit)
+  }
+}
+```

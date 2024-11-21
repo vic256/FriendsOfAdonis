@@ -15,7 +15,7 @@
     "(references)/configuration",
     "[Decorators](https://openapi-ts.dev/openapi-metadata/decorators)",
     "---Advanced---",
-    "(advanced)/mapped-types",
-    "(advanced)/generic-types"
+    "(advanced)/generic-types",
+    "(advanced)/mapped-types"
   ]
 }
