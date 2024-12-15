@@ -45,12 +45,15 @@ export class RouterLoader {
 
     const name = stringHelpers.create(target.name).removeSuffix('Controller').toString()
 
-    OperationMetadataStorage.mergeMetadata(
+    const metadata = OperationMetadataStorage.getMetadata(target.prototype, propertyKey, true)
+
+    OperationMetadataStorage.defineMetadata(
       target.prototype,
       {
+        ...metadata,
         path: route.pattern,
         methods: route.methods.filter((m) => m !== 'HEAD').map((r) => r.toLowerCase()) as any,
-        tags: [name],
+        tags: [...new Set(metadata.tags ?? [name])],
       },
       propertyKey
     )
